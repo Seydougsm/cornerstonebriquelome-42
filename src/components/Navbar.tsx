@@ -1,11 +1,14 @@
 
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart, User } from "lucide-react";
+import { useCart } from "../contexts/CartContext";
+import { Badge } from "./ui/badge";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { getTotalItems } = useCart();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,8 +22,10 @@ const Navbar = () => {
   
   const links = [
     { name: "Accueil", path: "/" },
+    { name: "Nos Services", path: "/services" },
     { name: "Galerie", path: "/galerie" },
     { name: "Avis", path: "/avis" },
+    { name: "À propos", path: "/a-propos" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -34,7 +39,7 @@ const Navbar = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-6">
           {links.map((link) => (
             <Link 
               key={link.path} 
@@ -46,13 +51,38 @@ const Navbar = () => {
           ))}
         </div>
         
+        {/* Cart and Account Icons */}
+        <div className="hidden md:flex items-center space-x-4">
+          <Link to="/mon-compte" className="text-cornerstone-blue hover:text-cornerstone-orange transition-colors">
+            <User size={24} />
+          </Link>
+          <Link to="/panier" className="text-cornerstone-blue hover:text-cornerstone-orange transition-colors relative">
+            <ShoppingCart size={24} />
+            {getTotalItems() > 0 && (
+              <Badge className="absolute -top-2 -right-2 bg-cornerstone-orange text-xs">
+                {getTotalItems()}
+              </Badge>
+            )}
+          </Link>
+        </div>
+        
         {/* Mobile Navigation Toggle */}
-        <button 
-          onClick={toggleMenu} 
-          className="md:hidden text-cornerstone-blue focus:outline-none"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex md:hidden items-center space-x-4">
+          <Link to="/panier" className="text-cornerstone-blue hover:text-cornerstone-orange transition-colors relative">
+            <ShoppingCart size={24} />
+            {getTotalItems() > 0 && (
+              <Badge className="absolute -top-2 -right-2 bg-cornerstone-orange text-xs">
+                {getTotalItems()}
+              </Badge>
+            )}
+          </Link>
+          <button 
+            onClick={toggleMenu} 
+            className="text-cornerstone-blue focus:outline-none"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Navigation Menu */}
@@ -69,6 +99,13 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <Link 
+              to="/mon-compte"
+              className="font-bold text-lg text-cornerstone-blue hover:text-cornerstone-orange transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Mon Compte
+            </Link>
           </div>
         </div>
       )}

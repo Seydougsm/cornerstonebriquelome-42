@@ -12,31 +12,44 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CallToAction from "./components/CallToAction";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import Account from "./pages/Account";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import { CartProvider } from "./contexts/CartContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/galerie" element={<Gallery />} />
-              <Route path="/avis" element={<Reviews />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-          <CallToAction phoneNumber="+228 71014747" />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
+    <CartProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/galerie" element={<Gallery />} />
+                <Route path="/avis" element={<Reviews />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/a-propos" element={<About />} />
+                <Route path="/mon-compte" element={<Account />} />
+                <Route path="/panier" element={<Cart />} />
+                <Route path="/paiement" element={<Checkout />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+            <CallToAction phoneNumber="+228 71014747" />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </CartProvider>
   </QueryClientProvider>
 );
 

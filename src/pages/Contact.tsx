@@ -1,10 +1,65 @@
 
-import { Phone, Mail, MapPin } from "lucide-react";
+import { useState } from "react";
+import { Phone, Mail, MapPin, Mic, MicOff, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingTime, setRecordingTime] = useState(0);
+  const [recordingInterval, setRecordingInterval] = useState<NodeJS.Timeout | null>(null);
+  const { toast } = useToast();
+  
+  const handleTextSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Votre message a été envoyé avec succès!");
+    toast({
+      title: "Message envoyé",
+      description: "Votre message a été envoyé avec succès!",
+    });
+  };
+  
+  const handleVoiceSubmit = () => {
+    if (recordingTime < 3) {
+      toast({
+        title: "Enregistrement trop court",
+        description: "Veuillez enregistrer un message d'au moins 3 secondes.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    stopRecording();
+    toast({
+      title: "Message vocal envoyé",
+      description: "Votre message vocal a été envoyé avec succès!",
+    });
+    setRecordingTime(0);
+  };
+  
+  const startRecording = () => {
+    setIsRecording(true);
+    const interval = setInterval(() => {
+      setRecordingTime(prev => prev + 1);
+    }, 1000);
+    setRecordingInterval(interval);
+  };
+  
+  const stopRecording = () => {
+    setIsRecording(false);
+    if (recordingInterval) {
+      clearInterval(recordingInterval);
+      setRecordingInterval(null);
+    }
+  };
+  
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -71,75 +126,172 @@ const Contact = () => {
           <div>
             <h2 className="section-title mb-8">Envoyez-nous un message</h2>
             
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-cornerstone-gray font-bold mb-2">
-                  Nom complet
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full p-3 border border-gray-300 rounded"
-                  placeholder="Votre nom"
-                  required
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-cornerstone-gray font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full p-3 border border-gray-300 rounded"
-                  placeholder="Votre email"
-                  required
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="phone" className="block text-cornerstone-gray font-bold mb-2">
-                  Téléphone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full p-3 border border-gray-300 rounded"
-                  placeholder="Votre numéro de téléphone"
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="subject" className="block text-cornerstone-gray font-bold mb-2">
-                  Sujet
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full p-3 border border-gray-300 rounded"
-                  placeholder="Sujet de votre message"
-                  required
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-cornerstone-gray font-bold mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  className="w-full p-3 border border-gray-300 rounded"
-                  rows={5}
-                  placeholder="Votre message..."
-                  required
-                />
-              </div>
-              
-              <button type="submit" className="cta-button w-full">
-                Envoyer le message
-              </button>
-            </form>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <Tabs defaultValue="text" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-6">
+                  <TabsTrigger value="text" className="flex items-center justify-center">
+                    <MessageSquare className="mr-2" size={18} />
+                    Message texte
+                  </TabsTrigger>
+                  <TabsTrigger value="voice" className="flex items-center justify-center">
+                    <Mic className="mr-2" size={18} />
+                    Message vocal
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="text">
+                  <form onSubmit={handleTextSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Nom complet</Label>
+                        <Input
+                          id="name"
+                          placeholder="Votre nom"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="Votre email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Téléphone</Label>
+                      <Input
+                        id="phone"
+                        placeholder="Votre numéro de téléphone"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="subject">Sujet</Label>
+                      <Input
+                        id="subject"
+                        placeholder="Sujet de votre message"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        rows={5}
+                        placeholder="Votre message..."
+                        required
+                      />
+                    </div>
+                    
+                    <Button 
+                      type="submit"
+                      className="w-full bg-cornerstone-orange hover:bg-cornerstone-orange/90"
+                    >
+                      Envoyer le message
+                    </Button>
+                  </form>
+                </TabsContent>
+                
+                <TabsContent value="voice">
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="voice-name">Nom complet</Label>
+                        <Input
+                          id="voice-name"
+                          placeholder="Votre nom"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="voice-email">Email</Label>
+                        <Input
+                          id="voice-email"
+                          type="email"
+                          placeholder="Votre email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="voice-phone">Téléphone</Label>
+                      <Input
+                        id="voice-phone"
+                        placeholder="Votre numéro de téléphone"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="voice-subject">Sujet</Label>
+                      <Input
+                        id="voice-subject"
+                        placeholder="Sujet de votre message"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="bg-gray-50 p-6 rounded-lg text-center">
+                      {isRecording ? (
+                        <div className="space-y-4">
+                          <div className="text-lg font-bold text-cornerstone-blue">
+                            Enregistrement en cours... {formatTime(recordingTime)}
+                          </div>
+                          <div className="animate-pulse">
+                            <Mic size={48} className="mx-auto text-cornerstone-orange" />
+                          </div>
+                          <Button 
+                            onClick={stopRecording}
+                            variant="outline" 
+                            className="border-red-500 text-red-500 hover:bg-red-50"
+                          >
+                            <MicOff size={16} className="mr-2" />
+                            Arrêter l'enregistrement
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          {recordingTime > 0 ? (
+                            <div className="text-lg font-bold text-cornerstone-blue">
+                              Enregistrement terminé ({formatTime(recordingTime)})
+                            </div>
+                          ) : (
+                            <div className="text-lg font-bold text-cornerstone-blue">
+                              Cliquez pour enregistrer votre message
+                            </div>
+                          )}
+                          <Mic size={48} className="mx-auto text-cornerstone-gray" />
+                          <Button 
+                            onClick={startRecording}
+                            variant="outline" 
+                            className="border-cornerstone-orange text-cornerstone-orange hover:bg-cornerstone-orange hover:text-white"
+                          >
+                            <Mic size={16} className="mr-2" />
+                            {recordingTime > 0 ? "Recommencer" : "Commencer l'enregistrement"}
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <Button 
+                      onClick={handleVoiceSubmit}
+                      disabled={recordingTime === 0 || isRecording}
+                      className="w-full bg-cornerstone-orange hover:bg-cornerstone-orange/90"
+                    >
+                      Envoyer le message vocal
+                    </Button>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
           </div>
         </div>
         

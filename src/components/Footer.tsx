@@ -25,9 +25,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Liens Rapides</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="hover:text-cornerstone-orange transition-colors">Accueil</Link></li>
+              <li><Link to="/services" className="hover:text-cornerstone-orange transition-colors">Nos Services</Link></li>
               <li><Link to="/galerie" className="hover:text-cornerstone-orange transition-colors">Galerie</Link></li>
               <li><Link to="/avis" className="hover:text-cornerstone-orange transition-colors">Avis</Link></li>
+              <li><Link to="/a-propos" className="hover:text-cornerstone-orange transition-colors">À propos</Link></li>
               <li><Link to="/contact" className="hover:text-cornerstone-orange transition-colors">Contact</Link></li>
+              <li><Link to="/mon-compte" className="hover:text-cornerstone-orange transition-colors">Mon Compte</Link></li>
             </ul>
           </div>
           
