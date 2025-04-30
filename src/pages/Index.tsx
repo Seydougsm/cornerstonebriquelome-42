@@ -2,6 +2,9 @@
 import { Button } from "@/components/ui/button";
 import Slideshow from "@/components/Slideshow";
 import { Link } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
+import { useEffect } from "react";
+import ExitIntentModal from "@/components/ExitIntentModal";
 
 const Index = () => {
   const images = [
@@ -35,7 +38,7 @@ const Index = () => {
           <p className="text-cornerstone-gray mb-8">
             CORNERSTONE BRIQUES est votre partenaire de confiance pour la fabrication et la fourniture de briques de haute qualité pour tous vos projets de construction. Notre engagement envers l'excellence et la satisfaction client nous distingue comme leader dans l'industrie de la construction au Togo.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
             <Link to="/galerie">
               <Button className="cta-button">Voir notre galerie</Button>
             </Link>
@@ -43,6 +46,22 @@ const Index = () => {
               <Button className="cta-button">Contactez-nous</Button>
             </Link>
           </div>
+          
+          {/* Diaspora Button */}
+          <a
+            href="https://www.cornerstonebrique.com/"
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Button 
+              variant="outline" 
+              className="border-cornerstone-orange border-2 text-cornerstone-orange hover:bg-cornerstone-orange hover:text-white font-bold px-6 py-3 transition-all"
+            >
+              Cliquez ici pour visiter l'espace Diaspora
+              <ExternalLink className="ml-2" size={16} />
+            </Button>
+          </a>
         </div>
       </section>
       
@@ -96,6 +115,9 @@ const Index = () => {
           </Link>
         </div>
       </section>
+
+      {/* Exit Intent Modal */}
+      <ExitIntentModal />
     </div>
   );
 };

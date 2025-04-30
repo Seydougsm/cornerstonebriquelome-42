@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { LocationMap } from "@/components/LocationMap";
+import { Badge } from "@/components/ui/badge";
 
 const Contact = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -79,7 +81,14 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-cornerstone-blue">Téléphone</h3>
-                  <p className="text-cornerstone-gray">+228 71014747</p>
+                  <a 
+                    href="https://wa.me/22871014747" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-cornerstone-gray hover:text-cornerstone-orange transition-colors"
+                  >
+                    +228 71014747 <Badge variant="outline" className="ml-1">WhatsApp</Badge>
+                  </a>
                   <p className="text-cornerstone-gray">+228 90 96 49 93 / 99 87 01 95</p>
                 </div>
               </div>
@@ -90,7 +99,12 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-cornerstone-blue">Email</h3>
-                  <p className="text-cornerstone-gray">contact@cornerstonebriques.com</p>
+                  <a 
+                    href="mailto:contact@cornerstonebriques.com"
+                    className="text-cornerstone-gray hover:text-cornerstone-orange transition-colors"
+                  >
+                    contact@cornerstonebriques.com
+                  </a>
                 </div>
               </div>
               
@@ -295,14 +309,15 @@ const Contact = () => {
           </div>
         </div>
         
-        {/* Map or Location Info */}
+        {/* Map */}
         <div className="mt-16">
-          <div className="border-2 border-cornerstone-orange p-6 rounded-lg">
-            <h2 className="section-title mb-4">Notre emplacement</h2>
-            <p className="text-cornerstone-gray text-center">
-              CORNERSTONE BRIQUES est situé à Lomé, Togo. Visitez-nous pour découvrir notre gamme complète de produits et consulter nos experts en construction.
-            </p>
+          <h2 className="section-title mb-4">Notre emplacement</h2>
+          <div className="h-[400px] w-full rounded-lg overflow-hidden border-2 border-cornerstone-orange">
+            <LocationMap />
           </div>
+          <p className="text-cornerstone-gray text-center mt-4">
+            CORNERSTONE BRIQUES est situé à Lomé, Togo. Visitez-nous pour découvrir notre gamme complète de produits et consulter nos experts en construction.
+          </p>
         </div>
       </div>
     </div>
