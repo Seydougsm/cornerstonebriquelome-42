@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Slideshow from "@/components/Slideshow";
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ShoppingCart } from "lucide-react";
 import { useEffect } from "react";
 import ExitIntentModal from "@/components/ExitIntentModal";
 
@@ -65,36 +65,59 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Products Section */}
+      {/* Products Section - Updated with new layout */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="title text-center mb-12">Nos Produits</h2>
+          <h2 className="title text-center mb-12 font-bold">Nos Produits</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Product 1 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="p-6">
-                <h3 className="font-bold text-xl text-cornerstone-blue mb-4">Briques Creuses</h3>
-                <ul className="list-disc list-inside text-cornerstone-gray space-y-2">
-                  <li>10 Creux: 40cm x 20cm x 10cm</li>
-                  <li>12 Creux: 40cm x 20cm x 12cm</li>
-                  <li>15 Creux: 40cm x 20cm x 15cm</li>
-                  <li>20 Creux: 40cm x 20cm x 20cm</li>
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {/* Product Image 1 */}
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img 
+                src="/lovable-uploads/350f469e-14ca-46ab-ae62-1c11d4502d27.png" 
+                alt="Brique Cornerstone 1" 
+                className="w-full h-64 object-cover object-center rounded transition hover:scale-105"
+              />
             </div>
             
-            {/* Product 2 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="p-6">
-                <h3 className="font-bold text-xl text-cornerstone-blue mb-4">Briques Pleines</h3>
-                <ul className="list-disc list-inside text-cornerstone-gray space-y-2">
-                  <li>10 Plein: 40cm x 20cm x 10cm</li>
-                  <li>12 Plein: 40cm x 20cm x 12cm</li>
-                  <li>15 Plein: 40cm x 20cm x 15cm</li>
-                </ul>
-              </div>
+            {/* Product Image 2 */}
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img 
+                src="/lovable-uploads/7bd83a38-6cb2-4bc7-b3dd-19f42976e1ed.png" 
+                alt="Brique Cornerstone 2" 
+                className="w-full h-64 object-cover object-center rounded transition hover:scale-105"
+              />
             </div>
+            
+            {/* Product Image 3 */}
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img 
+                src="/lovable-uploads/a545235e-5a56-467a-b956-855dfa08d787.png" 
+                alt="Brique Cornerstone 3" 
+                className="w-full h-64 object-cover object-center rounded transition hover:scale-105"
+              />
+            </div>
+            
+            {/* Product Image 4 */}
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img 
+                src="/lovable-uploads/7c9d382a-aaf6-4267-a671-816664f22523.png" 
+                alt="Brique Cornerstone 4" 
+                className="w-full h-64 object-cover object-center rounded transition hover:scale-105"
+              />
+            </div>
+          </div>
+          
+          {/* Commander Maintenant Button */}
+          <div className="text-center">
+            <Link to="/panier">
+              <Button 
+                className="bg-cornerstone-orange text-white font-bold text-lg py-6 px-10 rounded-md hover:bg-opacity-90 transition-all"
+              >
+                <ShoppingCart className="mr-2" size={20} />
+                Commander maintenant
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
