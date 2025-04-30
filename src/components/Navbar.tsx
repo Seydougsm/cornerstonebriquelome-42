@@ -22,7 +22,7 @@ const Navbar = () => {
   
   const links = [
     { name: "Accueil", path: "/" },
-    { name: "Nos Services", path: "/services" },
+    { name: "Nos Produits", path: "/services" },
     { name: "Galerie", path: "/galerie" },
     { name: "Avis", path: "/avis" },
     { name: "À propos", path: "/a-propos" },
@@ -33,6 +33,11 @@ const Navbar = () => {
     <nav className="bg-white shadow-md py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center">
+          <img 
+            src="/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png" 
+            alt="Cornerstone Briques Logo" 
+            className="h-10 mr-2"
+          />
           <h1 className="text-2xl font-bold text-cornerstone-blue">
             <span className="text-cornerstone-orange">CORNERSTONE</span> BRIQUES
           </h1>

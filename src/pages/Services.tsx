@@ -115,7 +115,7 @@ const Services = () => {
   return (
     <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
-        <h1 className="title text-center mb-6">Nos Services</h1>
+        <h1 className="title text-center mb-6">Nos Produits</h1>
         <p className="subtitle text-center mb-12">Découvrez notre gamme complète de produits de construction</p>
         
         {/* Filter Categories */}

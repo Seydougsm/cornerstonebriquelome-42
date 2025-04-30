@@ -18,6 +18,7 @@ import Account from "./pages/Account";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import { CartProvider } from "./contexts/CartContext";
+import CommandButton from "./components/CommandButton";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
                 <Route path="/paiement" element={<Checkout />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <CommandButton />
             </main>
             <Footer />
             <CallToAction phoneNumber="+228 71014747" />
