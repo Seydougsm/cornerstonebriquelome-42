@@ -1,99 +1,91 @@
 
-import { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 const Gallery = () => {
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [
-    "/lovable-uploads/6ef192e3-5877-4867-a4ba-f694a291ffeb.png",
-    "/lovable-uploads/60e0420e-09f2-4dd1-8075-472f6ffd19a2.png",
-    "/lovable-uploads/7bdda587-b33f-46ff-bb67-05121bc22fb8.png",
-    "/lovable-uploads/f84d0352-9184-4976-a414-b54cef2434f7.png",
-    "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png",
-    "/lovable-uploads/47b9e39a-b9cb-48a4-9d80-0ebc000e3571.png",
-    "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-    "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
-    "/lovable-uploads/2cfdf9b7-5911-414b-90f6-d858eb388cdd.png",
-    "/lovable-uploads/27bd9bd8-0ecf-4f39-aa70-9f3b0fa28cf8.png"
+    {
+      id: 1,
+      src: "/lovable-uploads/6ef192e3-5877-4867-a4ba-f694a291ffeb.png",
+      alt: "Gallery Image 1"
+    },
+    {
+      id: 2,
+      src: "/lovable-uploads/7bdda587-b33f-46ff-bb67-05121bc22fb8.png",
+      alt: "Gallery Image 2"
+    },
+    {
+      id: 3,
+      src: "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png",
+      alt: "Gallery Image 3"
+    },
+    {
+      id: 4,
+      src: "/lovable-uploads/37a4e285-3958-44f1-97be-220084e4c3de.png",
+      alt: "Gallery Image 4"
+    },
+    {
+      id: 5,
+      src: "/lovable-uploads/7c9d382a-aaf6-4267-a671-816664f22523.png",
+      alt: "Gallery Image 5"
+    },
+    {
+      id: 6,
+      src: "/lovable-uploads/350f469e-14ca-46ab-ae62-1c11d4502d27.png",
+      alt: "Gallery Image 6"
+    }
   ];
 
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = imagesRef.current.findIndex(
-            (ref) => ref === entry.target
-          );
-          
-          if (entry.isIntersecting && index !== -1) {
-            setVisibleItems((prev) => new Set([...prev, index]));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const openImage = (src: string) => {
+    setSelectedImage(src);
+  };
 
-    imagesRef.current.forEach((ref) => {
-      if (ref) observerRef.current?.observe(ref);
-    });
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, []);
+  const closeImage = () => {
+    setSelectedImage(null);
+  };
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="title mb-4">Notre Galerie</h1>
-          <p className="subtitle max-w-2xl mx-auto">
-            Découvrez nos travaux et projets de construction réalisés avec nos briques de qualité
-          </p>
-        </div>
-        
-        {/* Orange border divider */}
-        <div className="border-b-2 border-cornerstone-orange mb-12"></div>
-        
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              ref={(el) => (imagesRef.current[index] = el)}
-              className={`overflow-hidden rounded-lg shadow-md transition-all duration-500 ${
-                visibleItems.has(index) ? "animate-blur-to-clear" : "filter blur-sm"
-              }`}
-            >
-              <div className="relative pb-[75%] overflow-hidden">
-                <img
-                  src={image}
-                  alt={`Gallery image ${index + 1}`}
-                  className="gallery-image absolute top-0 left-0 w-full h-full object-cover"
-                />
-              </div>
+    <div className="container mx-auto py-12">
+      <h1 className="text-4xl font-bold mb-8 text-center">Notre Galerie</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {images.map((image) => (
+          <Card 
+            key={image.id} 
+            className="overflow-hidden cursor-pointer hover-scale"
+            onClick={() => openImage(image.src)}
+          >
+            <div className="h-64 overflow-hidden">
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
             </div>
-          ))}
-        </div>
-        
-        {/* Orange border divider */}
-        <div className="border-b-2 border-cornerstone-orange my-12"></div>
-        
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <h2 className="text-2xl font-bold text-cornerstone-blue mb-4">
-            Vous souhaitez démarrer votre projet?
-          </h2>
-          <p className="text-cornerstone-gray mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour discuter de vos besoins en matière de construction et obtenir un devis personnalisé.
-          </p>
-          <a href="tel:+22871014747" className="cta-button inline-block">
-            Appeler au +228 71014747
-          </a>
-        </div>
+          </Card>
+        ))}
       </div>
+
+      <Dialog open={!!selectedImage} onOpenChange={() => closeImage()}>
+        <DialogContent className="max-w-4xl p-0 bg-transparent border-none shadow-none">
+          <button 
+            onClick={closeImage}
+            className="absolute right-2 top-2 z-50 rounded-full bg-black/30 hover:bg-black/50 p-2 text-white"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          {selectedImage && (
+            <img 
+              src={selectedImage} 
+              alt="Enlarged gallery image" 
+              className="w-full h-full object-contain animate-scale-in"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
