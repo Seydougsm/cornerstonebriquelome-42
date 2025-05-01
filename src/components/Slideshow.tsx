@@ -5,15 +5,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface SlideshowProps {
   images?: string[];
+  slogan?: string;
 }
 
-const Slideshow = ({ images = [
-  "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
-  "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
-  "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-  "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
-  "/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png"
-] }: SlideshowProps) => {
+const Slideshow = ({ 
+  images = [
+    "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
+    "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
+    "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
+    "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
+    "/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png"
+  ],
+  slogan
+}: SlideshowProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const timeoutRef = useRef<number | null>(null);
   const delay = 3000;
@@ -63,6 +67,14 @@ const Slideshow = ({ images = [
           backgroundPosition: "center",
         }}
       />
+      
+      {slogan && (
+        <div className="absolute bottom-20 left-0 right-0 text-center">
+          <p className="bg-black/50 text-white py-4 px-6 inline-block text-xl font-italic rounded">
+            {slogan}
+          </p>
+        </div>
+      )}
 
       <Button
         onClick={goToPrevious}
