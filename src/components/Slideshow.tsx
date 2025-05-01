@@ -3,18 +3,20 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Slideshow = () => {
+interface SlideshowProps {
+  images?: string[];
+}
+
+const Slideshow = ({ images = [
+  "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
+  "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
+  "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
+  "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
+  "/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png"
+] }: SlideshowProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const timeoutRef = useRef<number | null>(null);
   const delay = 3000;
-
-  const images = [
-    "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
-    "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
-    "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-    "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
-    "/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png"
-  ];
 
   const resetTimeout = () => {
     if (timeoutRef.current) {

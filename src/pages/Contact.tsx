@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import LocationMap from "@/components/LocationMap";
+import { LocationMap } from "@/components/LocationMap";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const Contact = () => {
