@@ -22,6 +22,9 @@ const Slideshow = ({
   const timeoutRef = useRef<number | null>(null);
   const delay = 3000;
 
+  // Take only 5 images from the array to ensure exactly 5 images are shown
+  const limitedImages = images.slice(0, 5);
+
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -33,7 +36,7 @@ const Slideshow = ({
     timeoutRef.current = window.setTimeout(
       () =>
         setCurrentIndex((prevIndex) =>
-          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+          prevIndex === limitedImages.length - 1 ? 0 : prevIndex + 1
         ),
       delay
     );
@@ -41,18 +44,18 @@ const Slideshow = ({
     return () => {
       resetTimeout();
     };
-  }, [currentIndex, images.length]);
+  }, [currentIndex, limitedImages.length]);
 
   const goToPrevious = () => {
     resetTimeout();
     const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
+    const newIndex = isFirstSlide ? limitedImages.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const goToNext = () => {
     resetTimeout();
-    const isLastSlide = currentIndex === images.length - 1;
+    const isLastSlide = currentIndex === limitedImages.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
@@ -62,7 +65,7 @@ const Slideshow = ({
       <div
         className="h-full w-full transition-transform duration-500"
         style={{
-          backgroundImage: `url(${images[currentIndex]})`,
+          backgroundImage: `url(${limitedImages[currentIndex]})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -95,7 +98,7 @@ const Slideshow = ({
       </Button>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {images.map((_, idx) => (
+        {limitedImages.map((_, idx) => (
           <div
             key={idx}
             className={`h-2 w-2 rounded-full ${
