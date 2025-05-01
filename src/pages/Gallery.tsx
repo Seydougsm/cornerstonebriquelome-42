@@ -37,6 +37,21 @@ const Gallery = () => {
       id: 6,
       src: "/lovable-uploads/350f469e-14ca-46ab-ae62-1c11d4502d27.png",
       alt: "Gallery Image 6"
+    },
+    {
+      id: 7,
+      src: "/lovable-uploads/dd925e7d-3413-4981-a0fc-a7a19719921f.png",
+      alt: "Briques empilées"
+    },
+    {
+      id: 8,
+      src: "/lovable-uploads/7a24f35e-7014-482d-9307-66c554cb9a81.png",
+      alt: "Équipe Cornerstone Briques"
+    },
+    {
+      id: 9,
+      src: "/lovable-uploads/d816d0d6-bdce-49be-9d9d-a345e4d8713e.png",
+      alt: "Catalogue de produits Cornerstone Briques"
     }
   ];
 
