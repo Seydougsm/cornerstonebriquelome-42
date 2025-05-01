@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Phone, Mail, MapPin, Mic, MicOff, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, Mic, MicOff, MessageSquare, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -85,9 +84,16 @@ const Contact = () => {
                     href="https://wa.me/22871014747" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-cornerstone-gray hover:text-cornerstone-orange transition-colors"
+                    className="text-cornerstone-gray hover:text-cornerstone-orange transition-colors flex items-center"
                   >
-                    +228 71014747 <Badge variant="outline" className="ml-1">WhatsApp</Badge>
+                    +228 71014747 
+                    <div className="ml-2 flex items-center">
+                      <img 
+                        src="/lovable-uploads/3d6e3100-3a4f-4fa8-9568-db93b7dc74a5.png"
+                        alt="WhatsApp" 
+                        className="h-5 w-5" 
+                      />
+                    </div>
                   </a>
                   <p className="text-cornerstone-gray">+228 90 96 49 93 / 99 87 01 95</p>
                 </div>

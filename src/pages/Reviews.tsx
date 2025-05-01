@@ -20,6 +20,41 @@ const sampleReviews: Review[] = [
     comment: "Service client très réactif et produits livrés rapidement. Seul petit bémol sur quelques briques légèrement endommagées, mais l'équipe a rapidement résolu le problème.",
     date: "28/01/2023",
   },
+  {
+    id: "3",
+    name: "Kossi Ametowoyona",
+    rating: 5,
+    comment: "Un fournisseur fiable pour tous mes projets de construction à Lomé. Les briques sont solides et uniformes, et leurs prix sont très compétitifs.",
+    date: "12/04/2023",
+  },
+  {
+    id: "4",
+    name: "Kouamé Adjété",
+    rating: 5,
+    comment: "Excellent rapport qualité-prix! J'ai commandé depuis la Côte d'Ivoire pour un projet à Abidjan, et j'ai été impressionné par la qualité et le service. Livraison internationale impeccable.",
+    date: "05/02/2023",
+  },
+  {
+    id: "5",
+    name: "Ouedraogo Mathieu",
+    rating: 4,
+    comment: "Très bons matériaux de construction. J'ai commandé pour un projet au Burkina Faso et la qualité des briques est remarquable. Je ferai certainement appel à leurs services pour mes futurs projets.",
+    date: "20/05/2023",
+  },
+  {
+    id: "6",
+    name: "Yawo Mawuli",
+    rating: 5,
+    comment: "Les briques de Cornerstone ont parfaitement résisté à la saison des pluies. Excellente durabilité et service client attentif. Je suis pleinement satisfait.",
+    date: "03/06/2023",
+  },
+  {
+    id: "7",
+    name: "Komla Agbéko",
+    rating: 4,
+    comment: "J'ai comparé plusieurs fournisseurs à Lomé et Cornerstone offre le meilleur équilibre entre qualité et prix. Leur équipe est également très professionnelle lors des livraisons.",
+    date: "17/04/2023",
+  },
 ];
 
 const Reviews = () => {
