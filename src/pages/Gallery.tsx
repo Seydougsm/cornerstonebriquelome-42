@@ -52,6 +52,21 @@ const Gallery = () => {
       id: 9,
       src: "/lovable-uploads/d816d0d6-bdce-49be-9d9d-a345e4d8713e.png",
       alt: "Catalogue de produits Cornerstone Briques"
+    },
+    {
+      id: 10,
+      src: "/lovable-uploads/c30caebc-9c3d-4a9b-b061-ec4ae5b5325a.png",
+      alt: "Machine de production"
+    },
+    {
+      id: 11,
+      src: "/lovable-uploads/4edffa2d-a821-45d1-a53c-3327e778f8af.png",
+      alt: "Équipement industriel"
+    },
+    {
+      id: 12,
+      src: "/lovable-uploads/dd64084d-6f14-41e9-a8e9-d030d3a2c5d3.png",
+      alt: "Moule à briques"
     }
   ];
 
