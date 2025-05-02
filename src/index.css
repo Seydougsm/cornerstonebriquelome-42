@@ -122,4 +122,8 @@
   .star-rating {
     @apply text-cornerstone-orange text-2xl;
   }
+  
+  .page-title {
+    @apply text-4xl font-bold mb-8 text-cornerstone-blue text-center;
+  }
 }

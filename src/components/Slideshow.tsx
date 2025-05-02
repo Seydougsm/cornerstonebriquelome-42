@@ -1,29 +1,21 @@
 
-import React, { useState, useEffect, useRef } from "react";
-import { Button } from "./ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SlideshowProps {
-  images?: string[];
+  images: string[];
   slogan?: string;
+  autoplayInterval?: number;
 }
 
 const Slideshow = ({ 
-  images = [
-    "/lovable-uploads/6ef192e3-5877-4867-a4ba-f694a291ffeb.png",
-    "/lovable-uploads/7a24f35e-7014-482d-9307-66c554cb9a81.png",
-    "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-    "/lovable-uploads/7bdda587-b33f-46ff-bb67-05121bc22fb8.png",
-    "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png"
-  ],
-  slogan
+  images = [], 
+  slogan, 
+  autoplayInterval = 5000 
 }: SlideshowProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const timeoutRef = useRef<number | null>(null);
-  const delay = 3000;
-
-  // Take only 5 images from the array to ensure exactly 5 images are shown
-  const limitedImages = images.slice(0, 5);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isAutoplay, setIsAutoplay] = useState(true);
 
   const resetTimeout = () => {
     if (timeoutRef.current) {
@@ -33,77 +25,108 @@ const Slideshow = ({
 
   useEffect(() => {
     resetTimeout();
-    timeoutRef.current = window.setTimeout(
-      () =>
-        setCurrentIndex((prevIndex) =>
-          prevIndex === limitedImages.length - 1 ? 0 : prevIndex + 1
-        ),
-      delay
-    );
+    
+    if (isAutoplay) {
+      timeoutRef.current = setTimeout(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
+      }, autoplayInterval);
+    }
 
     return () => {
       resetTimeout();
     };
-  }, [currentIndex, limitedImages.length]);
-
-  const goToPrevious = () => {
-    resetTimeout();
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? limitedImages.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
+  }, [currentIndex, autoplayInterval, images.length, isAutoplay]);
 
   const goToNext = () => {
-    resetTimeout();
-    const isLastSlide = currentIndex === limitedImages.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    setIsAutoplay(false); // Pause autoplay when manually navigating
+    setCurrentIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+    
+    // Resume autoplay after 10 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoplay(true);
+    }, 10000);
   };
 
+  const goToPrev = () => {
+    setIsAutoplay(false); // Pause autoplay when manually navigating
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+    
+    // Resume autoplay after 10 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoplay(true);
+    }, 10000);
+  };
+
+  if (images.length === 0) return null;
+
   return (
-    <div className="relative h-[500px] md:h-[600px] w-full overflow-hidden rounded-lg">
-      <div
-        className="h-full w-full transition-transform duration-500"
-        style={{
-          backgroundImage: `url(${limitedImages[currentIndex]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+    <div className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      
+      {/* Left Navigation Button */}
+      <button 
+        onClick={goToPrev} 
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 p-2 rounded-full text-white"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      
+      {/* Right Navigation Button */}
+      <button 
+        onClick={goToNext} 
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 p-2 rounded-full text-white"
+      >
+        <ChevronRight size={24} />
+      </button>
+      
+      {images.map((image, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            idx === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={image}
+            alt={`Slide ${idx + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
       
       {slogan && (
-        <div className="absolute bottom-20 left-0 right-0 text-center">
-          <p className="bg-black/50 text-white py-4 px-6 inline-block text-xl font-italic rounded">
-            {slogan}
-          </p>
+        <div className="absolute bottom-0 inset-x-0 z-20 p-6 md:p-10 text-center">
+          <div className="bg-black/50 backdrop-blur-md p-4 md:p-8 rounded-lg inline-block">
+            <p className="text-white text-lg md:text-2xl lg:text-3xl font-semibold">
+              {slogan}
+            </p>
+          </div>
         </div>
       )}
-
-      <Button
-        onClick={goToPrevious}
-        variant="outline"
-        size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white/90"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </Button>
-
-      <Button
-        onClick={goToNext}
-        variant="outline"
-        size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white/90"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </Button>
-
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {limitedImages.map((_, idx) => (
-          <div
+      
+      <div className="absolute bottom-4 inset-x-0 flex justify-center gap-2 z-20">
+        {images.map((_, idx) => (
+          <button
             key={idx}
-            className={`h-2 w-2 rounded-full ${
-              currentIndex === idx ? "bg-white" : "bg-white/50"
+            onClick={() => {
+              setCurrentIndex(idx);
+              setIsAutoplay(false);
+              
+              // Resume autoplay after 10 seconds of inactivity
+              setTimeout(() => {
+                setIsAutoplay(true);
+              }, 10000);
+            }}
+            className={`h-2 w-2 rounded-full transition-all ${
+              idx === currentIndex ? 'bg-white w-4' : 'bg-white/50'
             }`}
+            aria-label={`Go to slide ${idx + 1}`}
           />
         ))}
       </div>

@@ -12,12 +12,7 @@ const Index = () => {
     "/lovable-uploads/60e0420e-09f2-4dd1-8075-472f6ffd19a2.png",
     "/lovable-uploads/7bdda587-b33f-46ff-bb67-05121bc22fb8.png",
     "/lovable-uploads/f84d0352-9184-4976-a414-b54cef2434f7.png",
-    "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png",
-    "/lovable-uploads/47b9e39a-b9cb-48a4-9d80-0ebc000e3571.png",
-    "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-    "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
-    "/lovable-uploads/2cfdf9b7-5911-414b-90f6-d858eb388cdd.png",
-    "/lovable-uploads/27bd9bd8-0ecf-4f39-aa70-9f3b0fa28cf8.png"
+    "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png"
   ];
 
   return (
@@ -47,9 +42,9 @@ const Index = () => {
             </Link>
           </div>
           
-          {/* Diaspora Button */}
+          {/* Diaspora Button - Updated URL */}
           <a
-            href="https://www.diaspora.cornerstonebrique.com/"
+            href="https://africa.cornerstonebrique.com/"
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block"
@@ -65,7 +60,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Products Section - Updated with new layout */}
+      {/* Products Section */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="title text-center mb-12 font-bold">Nos Produits</h2>

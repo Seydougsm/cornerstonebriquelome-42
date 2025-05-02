@@ -55,7 +55,7 @@ const Contact = () => {
   return (
     <div className="bg-white">
       <div className="container mx-auto py-12">
-        <h1 className="text-4xl font-bold mb-8 text-center">Contactez-nous</h1>
+        <h1 className="text-4xl font-bold mb-8 text-cornerstone-blue text-center">Contactez-nous</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-8">

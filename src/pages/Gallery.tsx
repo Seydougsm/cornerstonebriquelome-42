@@ -65,7 +65,7 @@ const Gallery = () => {
 
   return (
     <div className="container mx-auto py-12">
-      <h1 className="text-4xl font-bold mb-8 text-center">Notre Galerie</h1>
+      <h1 className="text-4xl font-bold mb-8 text-cornerstone-blue text-center">Notre Galerie</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {images.map((image) => (
           <Card 
