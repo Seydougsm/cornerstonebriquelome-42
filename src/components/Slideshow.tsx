@@ -11,10 +11,10 @@ interface SlideshowProps {
 const Slideshow = ({ 
   images = [
     "/lovable-uploads/8e941bfc-d91b-4780-bafa-c010a8873913.png",
-    "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
+    "/lovable-uploads/7a24f35e-7014-482d-9307-66c554cb9a81.png",
     "/lovable-uploads/8422557d-5ec3-4cde-b548-a0dae3eba38b.png",
-    "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
-    "/lovable-uploads/0f03497a-90ea-4042-aa11-20e4635b1346.png"
+    "/lovable-uploads/7bdda587-b33f-46ff-bb67-05121bc22fb8.png",
+    "/lovable-uploads/bcc3b505-4545-49c1-a562-ccd8cae646f6.png"
   ],
   slogan
 }: SlideshowProps) => {
