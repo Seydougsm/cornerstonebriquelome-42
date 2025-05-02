@@ -5,9 +5,9 @@ import ProductCard from '@/components/ProductCard';
 
 // Images à remplacer par les photos téléchargées
 const productImages = {
-  creuxImage: "/lovable-uploads/2a1a2ef8-7fd3-41a1-8af5-a4c0d7bfe543.png",
-  pleinImage: "/lovable-uploads/c3390b5c-8932-4466-85fa-1952e2b7dabc.png",
-  hourdisImage: "/lovable-uploads/579282be-70b9-4edb-b6ba-da8dc8ce2088.png",
+  creuxImage: "/lovable-uploads/350f469e-14ca-46ab-ae62-1c11d4502d27.png",
+  pleinImage: "/lovable-uploads/f84d0352-9184-4976-a414-b54cef2434f7.png",
+  hourdisImage: "/lovable-uploads/2a1a2ef8-7fd3-41a1-8af5-a4c0d7bfe543.png",
   paveImage: "/lovable-uploads/37a4e285-3958-44f1-97be-220084e4c3de.png",
 };
 
@@ -16,7 +16,7 @@ const Services = () => {
     {
       id: "creux-10",
       name: "Brique Creuse 10",
-      description: "Brique creuse de dimensions 40cm x 20cm x 10cm, idéale pour les cloisons et murs non porteurs.",
+      description: "Brique creuse de dimensions , idéale pour les cloisons et murs non porteurs.",
       price: 250,
       image: productImages.creuxImage,
       type: "creux",
@@ -25,7 +25,7 @@ const Services = () => {
     {
       id: "creux-12",
       name: "Brique Creuse 12",
-      description: "Brique creuse de dimensions 40cm x 20cm x 12cm, pour murs et cloisons de séparation.",
+      description: "Brique creuse de dimensions , pour murs et cloisons de séparation.",
       price: 300,
       image: productImages.creuxImage,
       type: "creux",
@@ -34,7 +34,7 @@ const Services = () => {
     {
       id: "creux-15",
       name: "Brique Creuse 15",
-      description: "Brique creuse de dimensions 40cm x 20cm x 15cm, adaptée pour les murs porteurs et isolation acoustique.",
+      description: "Brique creuse de dimensions , adaptée pour les murs porteurs et isolation acoustique.",
       price: 380,
       image: productImages.creuxImage,
       type: "creux",
@@ -43,7 +43,7 @@ const Services = () => {
     {
       id: "creux-20",
       name: "Brique Creuse 20",
-      description: "Brique creuse de dimensions 40cm x 20cm x 20cm, pour construction de murs porteurs et à forte isolation.",
+      description: "Brique creuse de dimensions , pour construction de murs porteurs et à forte isolation.",
       price: 500,
       image: productImages.creuxImage,
       type: "creux",
@@ -52,7 +52,7 @@ const Services = () => {
     {
       id: "plein-10",
       name: "Brique Pleine 10",
-      description: "Brique pleine de dimensions 40cm x 20cm x 10cm, offrant une grande résistance pour les murs de soutènement.",
+      description: "Brique pleine de dimensions , offrant une grande résistance pour les murs de soutènement.",
       price: 350,
       image: productImages.pleinImage,
       type: "plein",
@@ -61,7 +61,7 @@ const Services = () => {
     {
       id: "plein-12",
       name: "Brique Pleine 12",
-      description: "Brique pleine de dimensions 40cm x 20cm x 12cm, idéale pour les murs porteurs nécessitant une grande solidité.",
+      description: "Brique pleine de dimensions , idéale pour les murs porteurs nécessitant une grande solidité.",
       price: 460,
       image: productImages.pleinImage,
       type: "plein",
@@ -70,7 +70,7 @@ const Services = () => {
     {
       id: "plein-15",
       name: "Brique Pleine 15",
-      description: "Brique pleine de dimensions 40cm x 20cm x 15cm, pour les constructions nécessitant une résistance maximale.",
+      description: "Brique pleine de dimensions , pour les constructions nécessitant une résistance maximale.",
       price: 500,
       image: productImages.pleinImage,
       type: "plein",
