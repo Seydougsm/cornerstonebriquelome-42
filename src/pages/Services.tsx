@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard';
 // Images à remplacer par les photos téléchargées
 const productImages = {
   creuxImage: "/lovable-uploads/350f469e-14ca-46ab-ae62-1c11d4502d27.png",
-  pleinImage: "/lovable-uploads/f84d0352-9184-4976-a414-b54cef2434f7.png",
+  pleinImage: "/lovable-uploads/7bd83a38-6cb2-4bc7-b3dd-19f42976e1ed.png",
   hourdisImage: "/lovable-uploads/2a1a2ef8-7fd3-41a1-8af5-a4c0d7bfe543.png",
   paveImage: "/lovable-uploads/37a4e285-3958-44f1-97be-220084e4c3de.png",
 };
