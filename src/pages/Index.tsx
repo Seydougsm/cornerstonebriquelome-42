@@ -49,7 +49,7 @@ const Index = () => {
           
           {/* Diaspora Button */}
           <a
-            href="https://www.cornerstonebrique.com/"
+            href="https://www.diaspora.cornerstonebrique.com/"
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block"
