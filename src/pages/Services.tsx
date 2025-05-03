@@ -191,7 +191,7 @@ const Services = () => {
               <CardContent className="p-0">
                 <h3 className="font-bold text-xl text-cornerstone-blue mb-4">Livraison</h3>
                 <p className="text-cornerstone-gray mb-4">
-                  Nous assurons la livraison de nos produits sur toute l'étendue du territoire. 
+                  Nous assurons la livraison de nos produits à Lomé et ses environs. 
                   Contactez-nous pour obtenir un devis personnalisé selon votre localisation.
                 </p>
               </CardContent>

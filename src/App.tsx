@@ -19,6 +19,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import { CartProvider } from "./contexts/CartContext";
 import CommandButton from "./components/CommandButton";
+import Tracking from "./pages/Tracking";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/mon-compte" element={<Account />} />
                 <Route path="/panier" element={<Cart />} />
                 <Route path="/paiement" element={<Checkout />} />
+                <Route path="/suivi" element={<Tracking />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CommandButton />
