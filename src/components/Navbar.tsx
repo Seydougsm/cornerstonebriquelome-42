@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,8 +58,16 @@ const Navbar = () => {
           ))}
         </div>
         
-        {/* Cart and Account Icons */}
+        {/* Cart, Account Icons and Order Now Button */}
         <div className="hidden md:flex items-center space-x-4">
+          <Link to="/panier">
+            <Button 
+              variant="orange" 
+              className="font-bold"
+            >
+              Commander Maintenant
+            </Button>
+          </Link>
           <Link to="/mon-compte" className="text-cornerstone-blue hover:text-cornerstone-orange transition-colors">
             <User size={24} />
           </Link>
@@ -74,6 +83,14 @@ const Navbar = () => {
         
         {/* Mobile Navigation Toggle */}
         <div className="flex md:hidden items-center space-x-4">
+          <Link to="/panier">
+            <Button 
+              variant="orange" 
+              className="font-bold text-xs py-1 px-2"
+            >
+              Commander
+            </Button>
+          </Link>
           <Link to="/panier" className="text-cornerstone-blue hover:text-cornerstone-orange transition-colors relative">
             <ShoppingCart size={24} />
             {getTotalItems() > 0 && (
