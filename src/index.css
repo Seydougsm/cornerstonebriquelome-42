@@ -127,3 +127,71 @@
     @apply text-4xl font-bold mb-8 text-cornerstone-blue text-center;
   }
 }
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .title {
+    @apply text-2xl;
+  }
+  
+  .subtitle {
+    @apply text-lg;
+  }
+  
+  .section-title {
+    @apply text-xl;
+  }
+  
+  .page-title {
+    @apply text-3xl mb-6;
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .section-divider {
+    @apply my-6;
+  }
+  
+  .py-12 {
+    @apply py-8;
+  }
+  
+  .py-16 {
+    @apply py-10;
+  }
+  
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    @apply mt-6;
+  }
+}
+
+/* Fix flex wrap issues on smaller screens */
+@media (max-width: 480px) {
+  .flex-wrap {
+    @apply flex-col;
+  }
+  
+  .flex-wrap > * {
+    @apply w-full mb-2;
+  }
+}
+
+/* Improved card responsiveness */
+.card {
+  @apply h-full;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
