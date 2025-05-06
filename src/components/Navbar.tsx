@@ -28,7 +28,7 @@ const Navbar = () => {
     { name: "Avis", path: "/avis" },
     { name: "À propos", path: "/a-propos" },
     { name: "Contact", path: "/contact" },
-    { name: "Suivi", path: "/suivi" },
+    { name: "Suivi en temps réel", path: "/suivi" },
   ];
 
   return (

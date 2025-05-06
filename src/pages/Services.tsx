@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import ProductCard from '@/components/ProductCard';
 import productImageMap from '@/utils/productImageMap';
 
@@ -111,6 +112,17 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-6 text-cornerstone-blue text-center">Nos Produits</h1>
         <p className="subtitle text-center mb-12">Découvrez notre gamme complète de produits de construction</p>
+        
+        <div className="flex justify-center mb-8">
+          <a href="https://estimation.cornerstonebrique.com/" target="_blank" rel="noopener noreferrer">
+            <Button 
+              variant="orange" 
+              className="font-bold px-6 py-3 text-lg"
+            >
+              Estimer mon projet
+            </Button>
+          </a>
+        </div>
         
         {/* Filter Categories */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
