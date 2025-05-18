@@ -16,7 +16,9 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Account from "./pages/Account";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import CashPayment from "./pages/CashPayment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCallback from "./pages/PaymentCallback";
 import { CartProvider } from "./contexts/CartContext";
 import CommandButton from "./components/CommandButton";
 import Tracking from "./pages/Tracking";
@@ -42,7 +44,9 @@ const App = () => (
                 <Route path="/a-propos" element={<About />} />
                 <Route path="/mon-compte" element={<Account />} />
                 <Route path="/panier" element={<Cart />} />
-                <Route path="/paiement" element={<Checkout />} />
+                <Route path="/paiement" element={<CashPayment />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
+                <Route path="/payment-callback" element={<PaymentCallback />} />
                 <Route path="/suivi" element={<Tracking />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

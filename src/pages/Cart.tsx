@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,6 +49,7 @@ const Cart = () => {
     );
   }
 
+          
   return (
     <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
